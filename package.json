@@ -1,0 +1,28 @@
+{
+  "name": "switzi",
+  "version": "0.0.1",
+  "description": "Yet another switch-like control structure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/y13i/switzi.git"
+  },
+  "keywords": [
+    "utility",
+    "switch",
+    "syntax"
+  ],
+  "author": {
+    "name": "Yoriki Yamaguchi",
+    "email": "email@y13i.com",
+    "url": "https://y13i.com/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/y13i/switzi/issues"
+  },
+  "homepage": "https://github.com/y13i/switzi#readme"
+}

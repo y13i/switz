@@ -1,5 +1,5 @@
 {
-  "name": "switzi",
+  "name": "switz",
   "version": "0.0.1",
   "description": "Yet another switch-like control structure.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/y13i/switzi.git"
+    "url": "https://github.com/y13i/switz.git"
   },
   "keywords": [
     "utility",
@@ -22,7 +22,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/y13i/switzi/issues"
+    "url": "https://github.com/y13i/switz/issues"
   },
-  "homepage": "https://github.com/y13i/switzi#readme"
+  "homepage": "https://github.com/y13i/switz#readme",
 }

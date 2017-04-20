@@ -13,7 +13,8 @@
         "test": "ava",
         "posttest": "npm run clean",
         "clean": "rm -rf dist lib/*.d.ts lib/*.js lib/*.js.map test/*.d.ts test/*.js test/*.js.map",
-        "lint": "tslint lib/**/*.ts test/**/*.ts --exclude *.d.ts"
+        "lint": "tslint lib/**/*.ts test/**/*.ts --exclude *.d.ts",
+        "document": "typedoc --out docs"
     },
     "repository": {
         "type": "git",
@@ -42,4 +43,3 @@
     },
     "dependencies": {}
 }
-

@@ -54,9 +54,8 @@ test("it can clear associated cases", t => {
 });
 
 test("it can match cases with given matcher", t => {
-  // tsurai
-  const sw = new Switch("ABC1234").setMatcher(<any>RegexpMatcher);
+  const sw = new Switch("ABC1234").setMatcher(RegexpMatcher);
 
-  sw.addCase(new Case<any, any, any, any>(/C(\d+)/, (match) => match[1]));
+  sw.addCase(new Case(/C(\d+)/, (match) => match[1]));
   t.is(sw.evaluate(), "1234");
 });

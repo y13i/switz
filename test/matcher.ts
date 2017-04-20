@@ -44,7 +44,7 @@ test("function matcher", t => {
 });
 
 test("custom matcher", t => {
-  const alwaysMatch: Matcher<true, any, any> = (_s, _c) => true;
+  const alwaysMatch: Matcher = (_s, _c) => true;
 
   t.true(alwaysMatch(1, 1));
 });

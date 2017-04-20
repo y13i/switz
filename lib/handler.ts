@@ -1,5 +1,5 @@
-export type Handler<Return, Match> = (match?: Match) => Return;
+export type Handler<T> = (match?: any) => T;
 
-export const DefaultHandler: Handler<void, void> = () => undefined;
+export const VoidHandler: Handler<void> = () => undefined;
 
 export default Handler;

@@ -87,3 +87,13 @@ test("it returns default handler output if no match made and custom default hand
 
   t.is(value, "404");
 });
+
+test("it can be used with type parameter", t => {
+  const v = switz<string>("foo", s => {
+    s.case("foo", () => "bar");
+    s.case("bar", () => "baz");
+    // s.case("fuz", () => 123); // ERROR!
+  });
+
+  t.is(v, "bar");
+});

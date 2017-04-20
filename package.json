@@ -1,17 +1,18 @@
 {
     "name": "switz",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "Yet another switch-like control structure.",
     "main": "index.js",
     "files": [
         "lib"
     ],
     "scripts": {
-        "prepublish": "npm run compile",
+        "prepublish": "tsc --project tsconfig.dist.json",
         "postpublish": "npm run clean",
-        "test": "npm run compile && ava && npm run clean",
-        "clean": "rm -f lib/*.d.ts lib/*.js lib/*.js.map test/*.d.ts test/*.js test/*.js.map",
-        "compile": "tsc",
+        "pretest": "tsc",
+        "test": "ava",
+        "posttest": "npm run clean",
+        "clean": "rm -rf dist lib/*.d.ts lib/*.js lib/*.js.map test/*.d.ts test/*.js test/*.js.map",
         "lint": "tslint lib/**/*.ts test/**/*.ts --exclude *.d.ts"
     },
     "repository": {

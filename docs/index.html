@@ -65,6 +65,92 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="switz-yet-another-switch-like-control-structure-">Switz - Yet another switch-like control structure.</h1>
+				<p>It&#39;s just a wheel reinventing.</p>
+				<p>Switch-like control structure written in TypeScript.</p>
+				<h2 id="installation">Installation</h2>
+				<pre><code><span class="hljs-meta">$</span><span class="bash"> npm install --save switz</span>
+</code></pre><h2 id="usage">Usage</h2>
+				<p>Example: <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/switch">switch - JavaScript</a></p>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// switz</span>
+<span class="hljs-keyword">const</span> switz = <span class="hljs-built_in">require</span>(<span class="hljs-string">"switz"</span>);
+
+switz(expr, s =&gt; {
+  s.matcher(switz.IncludedMatcher);
+
+  s.case([<span class="hljs-string">"Oranges"</span>], () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Oranges are $0.59 a pound.'</span>);
+  });
+
+  s.case([<span class="hljs-string">"Apples"</span>], () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Apples are $0.32 a pound.'</span>);
+  });
+
+  s.case([<span class="hljs-string">"Bananas"</span>], () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Bananas are $0.48 a pound.'</span>);
+  });
+
+  s.case([<span class="hljs-string">"Cherries"</span>], () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Cherries are $3.00 a pound.'</span>);
+  });
+
+  s.case([<span class="hljs-string">"Mangoes"</span>, <span class="hljs-string">"Papayas"</span>], () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Mangoes and papayas are $2.79 a pound.'</span>);
+  });
+
+  s.default(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Sorry, we are out of '</span> + expr + <span class="hljs-string">'.'</span>);
+  });
+});
+
+<span class="hljs-comment">// Native switch</span>
+<span class="hljs-keyword">switch</span> (expr) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Oranges'</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Oranges are $0.59 a pound.'</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Apples'</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Apples are $0.32 a pound.'</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Bananas'</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Bananas are $0.48 a pound.'</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Cherries'</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Cherries are $3.00 a pound.'</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Mangoes'</span>:
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Papayas'</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Mangoes and papayas are $2.79 a pound.'</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Sorry, we are out of '</span> + expr + <span class="hljs-string">'.'</span>);
+}
+</code></pre>
+				<p>Returns matched case&#39;s handler output.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> value1 = switz(<span class="hljs-string">"foo"</span>, s =&gt; {
+  s.case(<span class="hljs-string">"foo"</span>, () =&gt; <span class="hljs-string">"foo!"</span>);
+  s.case(<span class="hljs-string">"bar"</span>, () =&gt; <span class="hljs-string">"bar!"</span>);
+});
+
+<span class="hljs-built_in">console</span>.log(value1); <span class="hljs-comment">// foo!</span>
+</code></pre>
+				<p>Can match subject and conditions with preset matcher. Also, can use matcher output as handler input.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> switz, {RegexpMatcher} <span class="hljs-keyword">from</span> <span class="hljs-string">'switz'</span>;
+
+<span class="hljs-keyword">const</span> message = switz(<span class="hljs-string">"fooooooooooooooooooooooooooooooo"</span>, s =&gt; {
+  s.matcher(RegexpMatcher);
+  s.case(<span class="hljs-regexp">/fo{10,}/</span>, match =&gt; <span class="hljs-string">`yes, <span class="hljs-subst">${match[<span class="hljs-number">0</span>].length}</span> "o"s.`</span>);
+  s.default(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">"no"</span>);
+});
+
+<span class="hljs-built_in">console</span>.log(message); <span class="hljs-comment">// yes, 32 "o"s.</span>
+</code></pre>
+				<p>Can be used with type parameter in TypeScript.</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> v = switz&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">"foo"</span>, <span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> {
+  s.case(<span class="hljs-string">"foo"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">"bar"</span>);
+  s.case(<span class="hljs-string">"bar"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">"baz"</span>);
+  s.case(<span class="hljs-string">"fuz"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">123</span>); <span class="hljs-comment">// Type unmatch ERROR!</span>
+});
+</code></pre>
+				<p>See also: <a href="https://github.com/y13i/switz/tree/master/test">test codes</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

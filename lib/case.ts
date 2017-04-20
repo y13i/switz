@@ -7,7 +7,7 @@ export class Case<T = any, C = any, M = any> {
     readonly handler:   Handler<T, M>,
   ) {}
 
-  match(subject: any, matcher: Matcher<M, C>): any {
+  match(subject: any, matcher: Matcher<M, C>): M {
     return matcher(subject, this.condition);
   }
 

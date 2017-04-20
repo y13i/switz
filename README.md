@@ -1,6 +1,6 @@
 # Switz - Yet another switch-like control structure.
 
-It's just a wheel reinventing.
+It's just reinventing the wheel.
 
 Switch-like control structure written in TypeScript.
 
@@ -29,9 +29,9 @@ switz(subject, statement)
 
 #### context
 
-`context.case(condition: any, (match: any) => any)`: Set case with condition and handler function.
-`context.default(() => any)`: Set default handler function.
-`context.matcher((subject, condition) => any)`: Set matcher function used to compare subject and each case's condition. If this returns truthy value, tha case matches.
+- `context.case(condition: any, (match: any) => any)`: Set case with condition and handler function.
+- `context.default(() => any)`: Set default handler function.
+- `context.matcher((subject, condition) => any)`: Set matcher function used to compare subject and each case's condition. If this returns truthy value, tha case matches.
 
 ### Example
 

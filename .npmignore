@@ -1,5 +1,5 @@
-*.ts
 !*.d.ts
 !*.js
 !*.js.map
 test/
+lib/*.ts

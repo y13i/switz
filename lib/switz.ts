@@ -1,9 +1,9 @@
 import Context from "./context";
 import Switch from "./switch";
 
-export function switz<T>(subject: any, statement: (context: Context<T>) => void): T | void {
-  const sw      = new Switch<T>(subject);
-  const context = new Context<T>(sw);
+export function switz<T = any, C = any, M = any>(subject: any, statement: (context: Context<T, C, M>) => void): T | void {
+  const sw      = new Switch<T, C, M>(subject);
+  const context = new Context<T, C, M>(sw);
 
   statement(context);
 

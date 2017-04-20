@@ -1,4 +1,4 @@
-export type Matcher = (subject: any, condition: any) => any;
+export type Matcher<M = any, C = any> = (subject: any, condition: C) => M;
 
 export const EqualityMatcher = (subject: any, condition: any) => {
   return subject === condition;

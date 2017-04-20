@@ -39,7 +39,7 @@
         "ava": "^0.19.1",
         "tslint": "^5.1.0",
         "typedoc": "^0.5.10",
-        "typescript": "^2.2.2"
+        "typescript": "rc"
     },
     "dependencies": {}
 }

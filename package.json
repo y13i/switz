@@ -7,7 +7,7 @@
         "dist"
     ],
     "scripts": {
-        "prepublish": "tsc --project tsconfig.dist.json",
+        "prepublish": "npm run lint && tsc --project tsconfig.dist.json",
         "postpublish": "npm run clean",
         "pretest": "tsc",
         "test": "ava",

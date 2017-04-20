@@ -137,3 +137,25 @@ switz("foo", s => s
 ```
 
 See also: [test codes](https://github.com/y13i/switz/tree/master/test)
+
+## Develop
+
+First.
+
+```
+$ git clone
+$ cd switz
+$ yarn
+```
+
+Test.
+
+```
+$ yarn test
+```
+
+Lint.
+
+```
+$ yarn run lint
+```

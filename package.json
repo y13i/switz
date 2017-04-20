@@ -4,7 +4,7 @@
     "description": "Yet another switch-like control structure.",
     "main": "index.js",
     "files": [
-        "lib"
+        "dist"
     ],
     "scripts": {
         "prepublish": "tsc --project tsconfig.dist.json",

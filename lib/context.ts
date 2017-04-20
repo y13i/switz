@@ -13,7 +13,7 @@ export class Context<T = any, C = any, M = any> {
     return this;
   }
 
-  case(condition: any, handler: Handler<T, M>): this {
+  case(condition: C, handler: Handler<T, M>): this {
     this.sw.addCase(new Case<T, C, M>(condition, handler));
     return this;
   }

@@ -8,8 +8,8 @@ export class Switch<T = any, C = any, M = any> {
   constructor(
     readonly subject: any,
 
-    protected matcher: Matcher<any, any> = EqualityMatcher,
-    protected defaultHandler: Handler<any, any> = VoidHandler,
+    protected matcher: Matcher<M, C> = <any>EqualityMatcher,
+    protected defaultHandler: Handler<T, M> = <any>VoidHandler,
   ) {}
 
   addCase(kase: Case<T, C, M>): this {
@@ -40,8 +40,8 @@ export class Switch<T = any, C = any, M = any> {
     return this.defaultHandler();
   }
 
-  private findCase(): {matchedCase?: Case<T, C, M>, match?: any} {
-    let match: any = undefined;
+  private findCase(): {matchedCase?: Case<T, C, M>, match?: M} {
+    let match: M | undefined = undefined;
 
     const matchedCase = this.cases.find(kase => {
       match = kase.match(this.subject, this.matcher);

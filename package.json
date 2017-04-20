@@ -7,7 +7,7 @@
         "lib"
     ],
     "scripts": {
-        "prepare": "npm run compile",
+        "prepublish": "npm run compile",
         "postpublish": "npm run clean",
         "test": "npm run compile && ava && npm run clean",
         "clean": "rm -f lib/*.d.ts lib/*.js lib/*.js.map test/*.d.ts test/*.js test/*.js.map",

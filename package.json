@@ -1,28 +1,39 @@
 {
-  "name": "switz",
-  "version": "0.0.1",
-  "description": "Yet another switch-like control structure.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/y13i/switz.git"
-  },
-  "keywords": [
-    "utility",
-    "switch",
-    "syntax"
-  ],
-  "author": {
-    "name": "Yoriki Yamaguchi",
-    "email": "email@y13i.com",
-    "url": "https://y13i.com/"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/y13i/switz/issues"
-  },
-  "homepage": "https://github.com/y13i/switz#readme",
+    "name": "switz",
+    "version": "0.0.1",
+    "description": "Yet another switch-like control structure.",
+    "main": "index.js",
+    "scripts": {
+        "prepare": "npm run compile",
+        "test": "npm run compile && ava && npm run clean",
+        "clean": "rm -f lib/*.d.ts lib/*.js lib/*.js.map test/*.d.ts test/*.js test/*.js.map",
+        "compile": "tsc",
+        "lint": "tslint lib/**/*.ts test/**/*.ts --exclude *.d.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/y13i/switz.git"
+    },
+    "keywords": [
+        "utility",
+        "switch",
+        "syntax"
+    ],
+    "author": {
+        "name": "Yoriki Yamaguchi",
+        "email": "email@y13i.com",
+        "url": "https://y13i.com/"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/y13i/switz/issues"
+    },
+    "homepage": "https://github.com/y13i/switz#readme",
+    "devDependencies": {
+        "ava": "^0.19.1",
+        "tslint": "^5.1.0",
+        "typedoc": "^0.5.10",
+        "typescript": "^2.2.2"
+    },
+    "dependencies": {}
 }

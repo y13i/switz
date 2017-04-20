@@ -1,5 +1,5 @@
 import test from "ava";
-import switz from "../lib";
+import switz, {RegexpMatcher} from "../lib";
 
 test("`switz` is a function", t => {
   t.is(typeof switz, "function");
@@ -96,4 +96,25 @@ test("it can be used with type parameter", t => {
   });
 
   t.is(v, "bar");
+});
+
+test("it can match subject and conditions with preset matcher", t => {
+  const v = switz("fooooooooooooooooooooooooooooooo", s => {
+    s.matcher(RegexpMatcher);
+    s.case(/foo{10,}/, () => "yes");
+    s.default(() => "no");
+  });
+
+  t.is(v, "yes");
+});
+
+test("it can match subject and conditions with custom matcher", t => {
+  const v = switz("foo", s => {
+    s.matcher((s, c) => s !== c); // nagation matcher
+
+    s.case("foo", () => "bar");
+    s.case("bar", () => "baz");
+  });
+
+  t.is(v, "baz");
 });

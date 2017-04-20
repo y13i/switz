@@ -12,7 +12,30 @@ $ npm install --save switz
 
 ## Usage
 
-Example: [switch - JavaScript](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/switch)
+### Syntax
+
+#### switz
+
+```
+switz(subject, statement)
+```
+
+`subject` - compared to case conditions.
+`statement` - function that determines cases and other behaviors.
+
+#### statement
+
+`statement` will be called with an argument `context`. `context` has `case`, `default` and `matcher` methods.
+
+#### context
+
+`context.case(condition: any, (match: any) => any)`: Set case with condition and handler function.
+`context.default(() => any)`: Set default handler function.
+`context.matcher((subject, condition) => any)`: Set matcher function used to compare subject and each case's condition. If this returns truthy value, tha case matches.
+
+### Example
+
+[switch - JavaScript](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/switch)
 
 ```javascript
 // switz
@@ -102,6 +125,15 @@ const v = switz<string>("foo", s => {
   s.case("bar", () => "baz");
   s.case("fuz", () => 123); // Type unmatch ERROR!
 });
+```
+
+Method-chainable.
+
+```javascript
+switz("foo", s => s
+  .case("foo", () => "bar")
+  .case("bar", () => "baz")
+);
 ```
 
 See also: [test codes](https://github.com/y13i/switz/tree/master/test)

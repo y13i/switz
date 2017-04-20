@@ -57,27 +57,6 @@ test("it returns undefined if no match made", t => {
   t.is(v2, undefined);
 });
 
-test("it returns undefined if no match made", t => {
-  let v1 = "foo";
-
-  const v2 = switz("foo", s => {
-    s.case("bar", () => {
-      const v = "bar";
-      v1 = v;
-      return v;
-    });
-
-    s.case("baz", () => {
-      const v = "baz";
-      v1 = v;
-      return v;
-    });
-  });
-
-  t.is(v1, "foo");
-  t.is(v2, undefined);
-});
-
 test("it returns default handler output if no match made and custom default handler is set", t => {
   const value = switz("foo", s => {
     s.case("bar", () => "bar!");
@@ -99,13 +78,13 @@ test("it can be used with type parameter", t => {
 });
 
 test("it can match subject and conditions with preset matcher", t => {
-  const v = switz("fooooooooooooooooooooooooooooooo", s => {
+  const message = switz("fooooooooooooooooooooooooooooooo", s => {
     s.matcher(RegexpMatcher);
-    s.case(/foo{10,}/, () => "yes");
+    s.case(/fo{10,}/, match => `yes, ${match[0].length} "o"s.`);
     s.default(() => "no");
   });
 
-  t.is(v, "yes");
+  t.is(message, "yes, 32 \"o\"s.");
 });
 
 test("it can match subject and conditions with custom matcher", t => {

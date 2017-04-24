@@ -136,6 +136,34 @@ switz("foo", s => s
 );
 ```
 
+The function `switz` is a wrapper of `Switch` class instance. You can use `Switch` and `Case` class directly if you would like to.
+
+```javascript
+const switz = require("switz");
+const Switch = switz.Switch;
+const Case = switz.Case;
+
+// Or use `import`
+
+import {Switch, Case} from "switz";
+
+const subject = Math.floor(Math.random() * 100);
+
+const mySwitch = new Switch(subject);
+
+mySwitch.setMatcher((s, c) => {
+  const min = c[0];
+  const max = c[1];
+
+  return min <= s && max >= s;
+});
+
+mySwitch.addCase(new Case([0, 50], () => "Between 0-50"));
+mySwitch.addCase(new Case([50, 100], () => "Between 50-100"));
+
+console.log(mySwitch.evaluate());
+```
+
 See also: [test codes](https://github.com/y13i/switz/tree/master/test)
 
 ## Develop

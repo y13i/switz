@@ -4,7 +4,8 @@
   "description": "Yet another switch-like control structure.",
   "main": "index.js",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "scripts": {
     "prepublish": "npm run lint && tsc --project tsconfig.dist.json",

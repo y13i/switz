@@ -1,6 +1,6 @@
 {
     "name": "switz",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "Yet another switch-like control structure.",
     "main": "index.js",
     "files": [

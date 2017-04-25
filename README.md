@@ -139,12 +139,8 @@ switz("foo", s => s
 The function `switz` is a wrapper of `Switch` class instance. You can use `Switch` and `Case` class directly if you would like to.
 
 ```javascript
-const switz = require("switz");
-const Switch = switz.Switch;
-const Case = switz.Case;
-
+const {Switch, Case} = require("switz");
 // Or use `import`
-
 import {Switch, Case} from "switz";
 
 const subject = Math.floor(Math.random() * 100);

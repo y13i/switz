@@ -30,6 +30,10 @@
     "pretty": true,
     "noEmitOnError": true
   },
+  "include": [
+    "lib/**/*.ts",
+    "test/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

@@ -12,8 +12,11 @@ export class Switch<T> {
     protected defaultHandler = VoidHandler,
   ) {}
 
-  addCase(kase: Case<T>): this {
-    this.cases.push(kase);
+  addCase(...cases: Case<T>[]): this {
+    cases.forEach(kase => {
+      this.cases.push(kase);
+    });
+
     return this;
   }
 

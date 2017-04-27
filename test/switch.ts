@@ -12,6 +12,17 @@ test("it can add case and evaluate", t => {
   t.is(sw.evaluate(), "B");
 });
 
+test("it can add multiple cases", t => {
+  const sw = new Switch("b");
+
+  sw.addCase(
+    new Case("a", () => "A"),
+    new Case("b", () => "B"),
+  );
+
+  t.is(sw.evaluate(), "B");
+});
+
 test("it matches first matchable case", t => {
   const sw = new Switch("a");
 

@@ -1,5 +1,8 @@
 # Switz - Yet another switch-like control structure.
 
+[![Build Status](https://travis-ci.org/y13i/switz.svg?branch=master)](https://travis-ci.org/y13i/switz)
+[![Coverage Status](https://coveralls.io/repos/github/y13i/switz/badge.svg?branch=master)](https://coveralls.io/github/y13i/switz?branch=master)
+
 It's just reinventing the wheel.
 
 Switch-like control structure written in TypeScript.
@@ -29,9 +32,9 @@ switz(subject, statement)
 
 #### context
 
-- `context.case(condition: any, (match: any) => any)`: Set case with condition and handler function.
-- `context.default(() => any)`: Set default handler function.
-- `context.matcher((subject, condition) => any)`: Set matcher function used to compare subject and each case's condition. If this returns truthy value, tha case matches.
+- `context.case(condition: any, handler: (match: any) => any)`: Set case with condition and handler function.
+- `context.default(handler: () => any)`: Set default handler function.
+- `context.matcher(matcher: (subject: T, condition: any) => any)`: Set matcher function used to compare subject and each case's condition. If this returns truthy value, tha case matches.
 
 ### Example
 
@@ -136,4 +139,50 @@ switz("foo", s => s
 );
 ```
 
+The function `switz` is a wrapper of `Switch` class instance. You can use `Switch` and `Case` class directly if you would like to.
+
+```javascript
+const {Switch, Case} = require("switz");
+// Or use `import`
+import {Switch, Case} from "switz";
+
+const subject = Math.floor(Math.random() * 100);
+
+const mySwitch = new Switch(subject);
+
+mySwitch.setMatcher((s, c) => {
+  const min = c[0];
+  const max = c[1];
+
+  return min <= s && max >= s;
+});
+
+mySwitch.addCase(new Case([0, 50], () => "Between 0-50"));
+mySwitch.addCase(new Case([50, 100], () => "Between 50-100"));
+
+console.log(mySwitch.evaluate());
+```
+
 See also: [test codes](https://github.com/y13i/switz/tree/master/test)
+
+## Develop
+
+First.
+
+```
+$ git clone
+$ cd switz
+$ yarn
+```
+
+Test.
+
+```
+$ yarn test
+```
+
+Lint.
+
+```
+$ yarn run lint
+```

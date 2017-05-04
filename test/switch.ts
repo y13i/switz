@@ -1,13 +1,24 @@
 import test from "ava";
 import Switch from "../lib/switch";
 import Case from "../lib/case";
-import {RegexpMatcher} from "../lib/matcher";
+import {EqualityMatcher, RegexpMatcher} from "../lib/matcher";
 
 test("it can add case and evaluate", t => {
   const sw = new Switch("b");
 
   sw.addCase(new Case("a", () => "A"));
   sw.addCase(new Case("b", () => "B"));
+
+  t.is(sw.evaluate(), "B");
+});
+
+test("it can add multiple cases", t => {
+  const sw = new Switch("b");
+
+  sw.addCase(
+    new Case("a", () => "A"),
+    new Case("b", () => "B"),
+  );
 
   t.is(sw.evaluate(), "B");
 });
@@ -58,4 +69,13 @@ test("it can match cases with given matcher", t => {
 
   sw.addCase(new Case(/C(\d+)/, (match) => match[1]));
   t.is(sw.evaluate(), "1234");
+});
+
+test("it can construct with given matcher and default handler", t => {
+  const sw = new Switch("abcde", RegexpMatcher);
+  sw.addCase(new Case(/a.c/, match => match[0]));
+  t.is(sw.evaluate(), "abc");
+
+  const sw2 = new Switch("abcde", EqualityMatcher, () => "no match");
+  t.is(sw2.evaluate(), "no match");
 });

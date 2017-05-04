@@ -65,12 +65,26 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="switz-yet-another-switch-like-control-structure-">Switz - Yet another switch-like control structure.</h1>
-				<p>It&#39;s just a wheel reinventing.</p>
+				<p>It&#39;s just reinventing the wheel.</p>
 				<p>Switch-like control structure written in TypeScript.</p>
 				<h2 id="installation">Installation</h2>
 				<pre><code><span class="hljs-meta">$</span><span class="bash"> npm install --save switz</span>
 </code></pre><h2 id="usage">Usage</h2>
-				<p>Example: <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/switch">switch - JavaScript</a></p>
+				<h3 id="syntax">Syntax</h3>
+				<h4 id="switz">switz</h4>
+				<pre><code><span class="hljs-function"><span class="hljs-title">switz</span><span class="hljs-params">(subject, statement)</span></span>
+</code></pre><p><code>subject</code> - compared to case conditions.
+				<code>statement</code> - function that determines cases and other behaviors.</p>
+				<h4 id="statement">statement</h4>
+				<p><code>statement</code> will be called with an argument <code>context</code>. <code>context</code> has <code>case</code>, <code>default</code> and <code>matcher</code> methods.</p>
+				<h4 id="context">context</h4>
+				<ul>
+					<li><code>context.case(condition: any, (match: any) =&gt; any)</code>: Set case with condition and handler function.</li>
+					<li><code>context.default(() =&gt; any)</code>: Set default handler function.</li>
+					<li><code>context.matcher((subject, condition) =&gt; any)</code>: Set matcher function used to compare subject and each case&#39;s condition. If this returns truthy value, tha case matches.</li>
+				</ul>
+				<h3 id="example">Example</h3>
+				<p><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/switch">switch - JavaScript</a></p>
 				<pre><code class="lang-javascript"><span class="hljs-comment">// switz</span>
 <span class="hljs-keyword">const</span> switz = <span class="hljs-built_in">require</span>(<span class="hljs-string">"switz"</span>);
 
@@ -150,7 +164,44 @@ switz(expr, s =&gt; {
   s.case(<span class="hljs-string">"fuz"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">123</span>); <span class="hljs-comment">// Type unmatch ERROR!</span>
 });
 </code></pre>
+				<p>Method-chainable.</p>
+				<pre><code class="lang-javascript">switz(<span class="hljs-string">"foo"</span>, s =&gt; s
+  .case(<span class="hljs-string">"foo"</span>, () =&gt; <span class="hljs-string">"bar"</span>)
+  .case(<span class="hljs-string">"bar"</span>, () =&gt; <span class="hljs-string">"baz"</span>)
+);
+</code></pre>
+				<p>The function <code>switz</code> is a wrapper of <code>Switch</code> class instance. You can use <code>Switch</code> and <code>Case</code> class directly if you would like to.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> {Switch, Case} = <span class="hljs-built_in">require</span>(<span class="hljs-string">"switz"</span>);
+<span class="hljs-comment">// Or use `import`</span>
+<span class="hljs-keyword">import</span> {Switch, Case} <span class="hljs-keyword">from</span> <span class="hljs-string">"switz"</span>;
+
+<span class="hljs-keyword">const</span> subject = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span>);
+
+<span class="hljs-keyword">const</span> mySwitch = <span class="hljs-keyword">new</span> Switch(subject);
+
+mySwitch.setMatcher(<span class="hljs-function">(<span class="hljs-params">s, c</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> min = c[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">const</span> max = c[<span class="hljs-number">1</span>];
+
+  <span class="hljs-keyword">return</span> min &lt;= s &amp;&amp; max &gt;= s;
+});
+
+mySwitch.addCase(<span class="hljs-keyword">new</span> Case([<span class="hljs-number">0</span>, <span class="hljs-number">50</span>], () =&gt; <span class="hljs-string">"Between 0-50"</span>));
+mySwitch.addCase(<span class="hljs-keyword">new</span> Case([<span class="hljs-number">50</span>, <span class="hljs-number">100</span>], () =&gt; <span class="hljs-string">"Between 50-100"</span>));
+
+<span class="hljs-built_in">console</span>.log(mySwitch.evaluate());
+</code></pre>
 				<p>See also: <a href="https://github.com/y13i/switz/tree/master/test">test codes</a></p>
+				<h2 id="develop">Develop</h2>
+				<p>First.</p>
+				<pre><code><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">clone</span></span>
+<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> switz</span>
+<span class="hljs-meta">$</span><span class="bash"> yarn</span>
+</code></pre><p>Test.</p>
+				<pre><code><span class="hljs-meta">$</span><span class="bash"> yarn <span class="hljs-built_in">test</span></span>
+</code></pre><p>Lint.</p>
+				<pre><code>$ yarn <span class="hljs-keyword">run</span><span class="bash"> lint</span>
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

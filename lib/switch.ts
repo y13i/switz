@@ -8,12 +8,15 @@ export class Switch<T = any, C = any, M = any> {
   constructor(
     readonly subject: any,
 
-    protected matcher: Matcher<M, C> = <any>EqualityMatcher,
-    protected defaultHandler: Handler<T, M> = <any>VoidHandler,
+    protected matcher:        Matcher<M, C> = <Matcher<any, C>>EqualityMatcher,
+    protected defaultHandler: Handler<T, M> = <Handler<any>>VoidHandler,
   ) {}
 
-  addCase(kase: Case<T, C, M>): this {
-    this.cases.push(kase);
+  addCase(...cases: Case<T, C, M>[]): this {
+    cases.forEach(kase => {
+      this.cases.push(kase);
+    });
+
     return this;
   }
 

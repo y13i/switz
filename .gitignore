@@ -5,5 +5,9 @@ node_modules
 *.d.ts
 
 !/index.js
+!/index.d.ts
 
 dist/
+
+.nyc_output
+coverage

@@ -29,9 +29,9 @@ switz(subject, statement)
 
 #### context
 
-- `context.case(condition: any, (match: any) => any)`: Set case with condition and handler function.
-- `context.default(() => any)`: Set default handler function.
-- `context.matcher((subject, condition) => any)`: Set matcher function used to compare subject and each case's condition. If this returns truthy value, tha case matches.
+- `context.case(condition: any, handler: (match: any) => any)`: Set case with condition and handler function.
+- `context.default(handler: () => any)`: Set default handler function.
+- `context.matcher(matcher: (subject: T, condition: any) => any)`: Set matcher function used to compare subject and each case's condition. If this returns truthy value, tha case matches.
 
 ### Example
 

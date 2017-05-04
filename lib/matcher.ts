@@ -9,11 +9,13 @@ export const RegexpMatcher = (subject: string, condition: RegExp) => {
 };
 
 export const IncludingMatcher = (subject: any[], condition: any) => {
-  return subject.includes(condition);
+  // return subject.includes(condition);
+  return subject.find(i => i === condition) !== undefined;
 };
 
 export const IncludedMatcher = (subject: any, condition: any[]) => {
-  return condition.includes(subject);
+  // return condition.includes(subject);
+  return condition.find(i => i === subject) !== undefined;
 };
 
 export const FunctionMatcher = (subject: any, fn: Function) => {

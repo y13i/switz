@@ -38,6 +38,7 @@
   "homepage": "https://github.com/y13i/switz#readme",
   "devDependencies": {
     "ava": "^0.19.1",
+    "coveralls": "^2.13.1",
     "nyc": "^10.3.0",
     "tslint": "^5.2.0",
     "typedoc": "^0.6.0",

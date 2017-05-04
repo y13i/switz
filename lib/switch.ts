@@ -8,8 +8,8 @@ export class Switch<T> {
   constructor(
     readonly subject: any,
 
-    protected matcher        = EqualityMatcher,
-    protected defaultHandler = VoidHandler,
+    protected matcher:        Matcher    = EqualityMatcher,
+    protected defaultHandler: Handler<T> = <Handler<T>>VoidHandler,
   ) {}
 
   addCase(...cases: Case<T>[]): this {

@@ -13,9 +13,11 @@
     "pretest": "tsc",
     "test": "nyc ava",
     "posttest": "npm run clean",
+    "start": "npm run watch",
     "clean": "rm -rf dist lib/*.d.ts lib/*.js lib/*.js.map test/*.d.ts test/*.js test/*.js.map",
     "lint": "tslint lib/**/*.ts test/**/*.ts --exclude *.d.ts",
-    "document": "typedoc --out docs"
+    "document": "typedoc --out docs",
+    "watch": "concurrently --raw --kill-others 'tsc --watch' 'ava --watch'"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
   "homepage": "https://github.com/y13i/switz#readme",
   "devDependencies": {
     "ava": "^0.19.1",
+    "concurrently": "^3.4.0",
     "coveralls": "^2.13.1",
     "nyc": "^10.3.0",
     "tslint": "^5.2.0",

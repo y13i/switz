@@ -1,5 +1,7 @@
 # Switz - Yet another switch-like control structure.
 
+[![Build Status](https://travis-ci.org/y13i/switz.svg?branch=master)](https://travis-ci.org/y13i/switz)
+
 It's just reinventing the wheel.
 
 Switch-like control structure written in TypeScript.

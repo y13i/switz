@@ -17,7 +17,7 @@
     "clean": "rm -rf dist lib/*.d.ts lib/*.js lib/*.js.map test/*.d.ts test/*.js test/*.js.map",
     "lint": "tslint lib/**/*.ts test/**/*.ts --exclude *.d.ts",
     "document": "typedoc --out docs",
-    "watch": "concurrently --raw --kill-others 'tsc --watch' 'ava --watch'"
+    "watch": "tsc && concurrently --raw --kill-others 'tsc --watch' 'ava --watch'"
   },
   "repository": {
     "type": "git",

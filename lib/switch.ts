@@ -2,17 +2,17 @@ import Case from "./case";
 import Handler, {VoidHandler} from "./handler";
 import Matcher, {EqualityMatcher} from "./matcher";
 
-export class Switch<T> {
-  protected cases: Case<T>[] = [];
+export class Switch<T = any, C = any, M = any> {
+  protected cases: Case<T, C, M>[] = [];
 
   constructor(
     readonly subject: any,
 
-    protected matcher:        Matcher    = EqualityMatcher,
-    protected defaultHandler: Handler<T> = <Handler<T>>VoidHandler,
+    protected matcher:        Matcher<M, C> = <Matcher<any, C>>EqualityMatcher,
+    protected defaultHandler: Handler<T, M> = <Handler<any>>VoidHandler,
   ) {}
 
-  addCase(...cases: Case<T>[]): this {
+  addCase(...cases: Case<T, C, M>[]): this {
     cases.forEach(kase => {
       this.cases.push(kase);
     });
@@ -25,12 +25,12 @@ export class Switch<T> {
     return this;
   }
 
-  setMatcher(matcher: Matcher): this {
+  setMatcher(matcher: Matcher<M, C>): this {
     this.matcher = matcher;
     return this;
   }
 
-  setDefaultHandler(handler: Handler<T>): this {
+  setDefaultHandler(handler: Handler<T, M>): this {
     this.defaultHandler = handler;
     return this;
   }
@@ -43,8 +43,8 @@ export class Switch<T> {
     return this.defaultHandler();
   }
 
-  private findCase(): {matchedCase?: Case<T>, match?: any} {
-    let match: any = undefined;
+  private findCase(): {matchedCase?: Case<T, C, M>, match?: M} {
+    let match: M | undefined = undefined;
 
     const matchedCase = this.cases.find(kase => {
       match = kase.match(this.subject, this.matcher);

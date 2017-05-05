@@ -1,13 +1,13 @@
 import Handler from "./handler";
 import Matcher from "./matcher";
 
-export class Case<T> {
+export class Case<T = any, C = any, M = any> {
   constructor(
-    readonly condition: any,
-    readonly handler:   Handler<T>,
+    readonly condition: C,
+    readonly handler:   Handler<T, M>,
   ) {}
 
-  match(subject: any, matcher: Matcher): any {
+  match(subject: any, matcher: Matcher<M, C>): M {
     return matcher(subject, this.condition);
   }
 

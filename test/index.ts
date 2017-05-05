@@ -75,6 +75,15 @@ test("it can be used with type parameter", t => {
   });
 
   t.is(v, "bar");
+
+  const v2 = switz<string, RegExp, RegExpMatchArray | null>("yeaaaaaaaahhhhhhhhhhhhhhh", s => {
+    s.matcher(RegexpMatcher);
+    s.case(/h{10,}/, match => `yes, ${match![0].length} "h"s.`);
+    // s.case("fuz", () => 123); // ERROR!
+    s.default(() => "no");
+  });
+
+  t.is(v2, "yes, 15 \"h\"s.");
 });
 
 test("it can match subject and conditions with preset matcher", t => {

@@ -1,3 +1,4 @@
+"use strict";
 var lib = require("./dist");
 module.exports = lib.default;
 for (var p in lib)

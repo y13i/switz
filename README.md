@@ -1,5 +1,7 @@
 # Switz - Yet another switch-like control structure.
 
+
+[![NPM Version](https://img.shields.io/npm/v/switz.svg)](https://www.npmjs.com/package/switz)
 [![Build Status](https://travis-ci.org/y13i/switz.svg?branch=master)](https://travis-ci.org/y13i/switz)
 [![Coverage Status](https://coveralls.io/repos/github/y13i/switz/badge.svg?branch=master)](https://coveralls.io/github/y13i/switz?branch=master)
 
